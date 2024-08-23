@@ -5,14 +5,13 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthLoginDTO } from './dto/auth-login.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthForgetDTO } from './dto/auth-forget.dto';
 import { AuthResetDTO } from './dto/auth-reset.dto';
-import { User } from '@prisma/client';
 import { AuthRegisterDTO } from './dto/auth-register.dto';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { MailerService } from '@nestjs-modules/mailer';
+import { CreateUserDTO } from 'src/user/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,12 +19,11 @@ export class AuthService {
   private readonly audience = 'users';
   constructor(
     private readonly jwtService: JwtService,
-    private readonly prisma: PrismaService,
     private readonly userService: UserService,
     private readonly mailer: MailerService,
   ) {}
 
-  createToken(user: User) {
+  createToken(user: CreateUserDTO & { id: number }) {
     return {
       accessToken: this.jwtService.sign(
         {
@@ -43,7 +41,7 @@ export class AuthService {
     };
   }
 
-  createTokenForgetPassword(user: User) {
+  createTokenForgetPassword(user: CreateUserDTO & { id: number }) {
     return {
       accessToken: this.jwtService.sign(
         {
