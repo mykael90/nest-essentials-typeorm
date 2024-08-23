@@ -40,7 +40,7 @@ POST {{urlLocal}}/reset
 Content-Type: {{contentType}}
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNDI2ODM0NywiZXhwIjoxNzI0MjcwMTQ3LCJhdWQiOiJ1c2VycyIsImlzcyI6ImZvcmdldCIsInN1YiI6IjEzIn0.CMWX6a5AWovZJoayFN2dlnkI66G5Oo2TjHg9wvEziC4",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI0NDQ1MzY1LCJleHAiOjE3MjQ0NDcxNjUsImF1ZCI6InVzZXJzIiwiaXNzIjoiZm9yZ2V0Iiwic3ViIjoiMiJ9.R9qjS3e2I56gI9Okts1NtUFoNr_ix_kw2_Iy6FZOKQ8",
     "password": "654321"
 }
 

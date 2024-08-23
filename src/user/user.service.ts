@@ -40,7 +40,7 @@ export class UserService {
   }
   async show(id: number) {
     await this.exists(id);
-    return await this.show(id);
+    return await this.usersRepository.findOneBy({ id });
   }
 
   async update(id: number, data: UpdatePutUserDTO) {
@@ -60,9 +60,7 @@ export class UserService {
 
   async delete(id: number) {
     await this.exists(id);
-    console.log('User exists');
     await this.usersRepository.delete(id);
-    console.log('User deleted');
     return { deleted: true };
   }
 
