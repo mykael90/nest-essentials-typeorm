@@ -6,7 +6,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/home/node/nest-essentials
+      - .:/home/node/nest-essentials-typeorm
 
   db:
     image: mysql:8.0.37-debian
