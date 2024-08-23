@@ -79,9 +79,11 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{token}}
 
 {
-    "name": "example"
+    "name": "example10"
 }
 
 ### DELETE one
 # @prompt userId
 DELETE {{urlLocal}}/{{userId}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}

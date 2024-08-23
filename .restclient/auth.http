@@ -8,8 +8,8 @@ POST {{urlLocal}}/login
 Content-Type: {{contentType}}
 
 {
-    "email": "example@provider.com",
-    "password": "654321"
+    "email": "eng.mykael@gmail.com",
+    "password": "123456"
 }
 
 ###
@@ -23,7 +23,8 @@ Content-Type: {{contentType}}
 {
     "name": "Mykael",
     "email": "eng.mykael@gmail.com",
-    "password": "123456"
+    "password": "123456",
+    "role": "1"
 }
 
 ### Forget
@@ -31,7 +32,7 @@ POST {{urlLocal}}/forget
 Content-Type: {{contentType}}
 
 {
-    "email": "eng3.mykael@gmail.com"
+    "email": "eng.mykael@gmail.com"
 }
 
 ### Reset

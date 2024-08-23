@@ -4,7 +4,7 @@
             "apiUrl": "http://localhost:3000"
         },
         "development": {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImV4YW1wbGUiLCJlbWFpbCI6ImV4YW1wbGVAcHJvdmlkZXIuY29tIiwiaWF0IjoxNzI0MTkxMDEzLCJleHAiOjE3MjQ3OTU4MTMsImF1ZCI6InVzZXJzIiwiaXNzIjoibG9naW4iLCJzdWIiOiIxIn0.WUw881NdyrOFw001JaJEnwlLJVR24DABGjJuoFgUDt4",
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ik15a2FlbCIsImVtYWlsIjoiZW5nLm15a2FlbEBnbWFpbC5jb20iLCJpYXQiOjE3MjQ0NDQzMTUsImV4cCI6MTcyNTA0OTExNSwiYXVkIjoidXNlcnMiLCJpc3MiOiJsb2dpbiIsInN1YiI6IjIifQ.tUvz_1VrJDFbuhhNJO7PdmyYoFgiysbNBe9kq28wA7Q",
       },
         "production": {
           "token": "TODO TOKEN",
