@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 // import { LogInterceptor } from './interceptors/log.interceptor';
 
 async function bootstrap() {
+  console.log('process.env', process.env);
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
@@ -18,4 +19,5 @@ async function bootstrap() {
 
   await app.listen(3000);
 }
+
 bootstrap();

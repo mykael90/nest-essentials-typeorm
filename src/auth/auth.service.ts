@@ -12,6 +12,7 @@ import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { MailerService } from '@nestjs-modules/mailer';
 import { CreateUserDTO } from 'src/user/dto/create-user.dto';
+import { User } from 'src/user/entity/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
     private readonly mailer: MailerService,
   ) {}
 
-  createToken(user: CreateUserDTO & { id: number }) {
+  createToken(user: User) {
     return {
       accessToken: this.jwtService.sign(
         {
@@ -41,7 +42,7 @@ export class AuthService {
     };
   }
 
-  createTokenForgetPassword(user: CreateUserDTO & { id: number }) {
+  createTokenForgetPassword(user: User) {
     return {
       accessToken: this.jwtService.sign(
         {
@@ -90,68 +91,56 @@ export class AuthService {
   }
 
   async login(data: AuthLoginDTO) {
-    const user = await this.prisma.user.findFirst({
-      where: { email: data.email },
-    });
-
-    if (!user) {
-      throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
-    }
-
-    const isPasswordCorrect = await bcrypt.compare(
-      data.password,
-      user.password,
-    );
-
-    if (!isPasswordCorrect) {
-      throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
-    }
-
-    return this.createToken(user);
+    // const user = await this.prisma.user.findFirst({
+    //   where: { email: data.email },
+    // });
+    // if (!user) {
+    //   throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
+    // }
+    // const isPasswordCorrect = await bcrypt.compare(
+    //   data.password,
+    //   user.password,
+    // );
+    // if (!isPasswordCorrect) {
+    //   throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
+    // }
+    // return this.createToken(user);
   }
 
   async forget(data: AuthForgetDTO) {
-    const user = await this.prisma.user.findFirst({
-      where: { email: data.email },
-    });
-
-    if (!user) {
-      throw new UnauthorizedException(`E-mail inválido!`);
-    }
-
-    const token = this.createTokenForgetPassword(user).accessToken;
-
-    await this.mailer.sendMail({
-      to: user.email,
-      subject: 'Redefinir senha',
-      template: 'forget',
-      context: {
-        name: user.name,
-        token,
-      },
-    });
-
-    return true;
+    // const user = await this.prisma.user.findFirst({
+    //   where: { email: data.email },
+    // });
+    // if (!user) {
+    //   throw new UnauthorizedException(`E-mail inválido!`);
+    // }
+    // const token = this.createTokenForgetPassword(user).accessToken;
+    // await this.mailer.sendMail({
+    //   to: user.email,
+    //   subject: 'Redefinir senha',
+    //   template: 'forget',
+    //   context: {
+    //     name: user.name,
+    //     token,
+    //   },
+    // });
+    // return true;
   }
 
   async reset(data: AuthResetDTO) {
-    const token = this.checkTokenForgetPassword(data.token);
-
-    const { id } = token;
-
-    try {
-      const salt = await bcrypt.genSalt();
-      const password = await bcrypt.hash(data.password, salt);
-
-      const user = await this.prisma.user.update({
-        where: { id },
-        data: { password },
-      });
-
-      return this.createToken(user);
-    } catch (e) {
-      throw new BadRequestException(e);
-    }
+    // const token = this.checkTokenForgetPassword(data.token);
+    // const { id } = token;
+    // try {
+    //   const salt = await bcrypt.genSalt();
+    //   const password = await bcrypt.hash(data.password, salt);
+    //   const user = await this.prisma.user.update({
+    //     where: { id },
+    //     data: { password },
+    //   });
+    //   return this.createToken(user);
+    // } catch (e) {
+    //   throw new BadRequestException(e);
+    // }
   }
 
   async register(data: AuthRegisterDTO) {

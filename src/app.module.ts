@@ -8,9 +8,13 @@ import { APP_GUARD } from '@nestjs/core';
 import { FileModule } from './file/file.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { User } from './user/entity/user.entity';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ThrottlerModule.forRoot({
       throttlers: [
         {
@@ -42,6 +46,16 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
           strict: true,
         },
       },
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'my-db1',
+      port: Number(process.env.DATABASE_PORT) || 3306,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      entities: [User],
+      synchronize: process.env.ENV !== 'production', //warning - Don't use in production
     }),
   ],
   controllers: [AppController],
