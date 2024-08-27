@@ -22,6 +22,9 @@
     "*.css": "css",
     ".dev.vars": "dotenv"
   },
+  "cSpell.words": [
+    "typeorm"
+  ],
 
 
 }

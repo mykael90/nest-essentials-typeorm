@@ -55,7 +55,9 @@ import { User } from './user/entity/user.entity';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [User],
-      synchronize: process.env.ENV !== 'production', //warning - Don't use in production
+      // synchronize: process.env.ENV !== 'production', //warning - Don't use in production
+      migrations: [`../typeorm/migrations/**/*{.ts,.js}`],
+      migrationsRun: true, //run migrations on startup
     }),
   ],
   controllers: [AppController],
