@@ -19,7 +19,7 @@ export class UserService {
   ) {}
   async create(data: CreateUserDTO) {
     if (
-      await this.usersRepository.exist({
+      await this.usersRepository.exists({
         where: {
           email: data.email,
         },
@@ -39,32 +39,32 @@ export class UserService {
     return this.usersRepository.find();
   }
   async show(id: number) {
-    await this.exists(id);
+    await this.exist(id);
     return await this.usersRepository.findOneBy({ id });
   }
 
   async update(id: number, data: UpdatePutUserDTO) {
     3;
-    await this.exists(id);
+    await this.exist(id);
     data.password = await this.hashPassword(data.password);
     await this.usersRepository.update(id, { ...data });
     return await this.show(id);
   }
 
   async updatePartial(id: number, data: UpdatePatchUserDTO) {
-    await this.exists(id);
+    await this.exist(id);
     if (data.password) data.password = await this.hashPassword(data.password);
     await this.usersRepository.update(id, { ...data });
     return await this.show(id);
   }
 
   async delete(id: number) {
-    await this.exists(id);
+    await this.exist(id);
     await this.usersRepository.delete(id);
     return { deleted: true };
   }
 
-  async exists(id: number) {
+  async exist(id: number) {
     if (!(await this.usersRepository.exists({ where: { id } }))) {
       throw new NotFoundException(`User ${id} not found`);
     }
