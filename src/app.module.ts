@@ -14,7 +14,9 @@ import { User } from './user/entity/user.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: process.env.ENV === 'test' ? '.env.test' : '.env',
+    }),
     ThrottlerModule.forRoot({
       throttlers: [
         {

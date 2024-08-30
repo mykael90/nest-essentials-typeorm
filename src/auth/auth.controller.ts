@@ -10,6 +10,8 @@ import {
   ParseFilePipe,
   FileTypeValidator,
   MaxFileSizeValidator,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthLoginDTO } from './dto/auth-login.dto';
 import { AuthRegisterDTO } from './dto/auth-register.dto';
@@ -40,6 +42,7 @@ export class AuthController {
   }
 
   @Post('register')
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async register(@Body() body: AuthRegisterDTO) {
     return this.authService.register(body);
   }
@@ -56,7 +59,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Post('check-token')
-  async checkToken(@User(['id', 'name', 'email']) user: CreateUserDTO) {
+  async checkToken(@User(['id', 'name', 'email', 'role']) user: CreateUserDTO) {
     return user;
   }
 

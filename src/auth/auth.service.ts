@@ -156,6 +156,7 @@ export class AuthService {
   }
 
   async register(data: AuthRegisterDTO) {
+    // if (data.role) throw new UnauthorizedException(`Role inválida!`);
     const user = await this.userService.create(data);
     return this.createToken(user);
   }
