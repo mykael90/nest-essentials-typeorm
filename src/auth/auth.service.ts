@@ -96,10 +96,6 @@ export class AuthService {
   async login(data: AuthLoginDTO) {
     const user = await this.usersRepository.findOneBy({ email: data.email });
 
-    // const user = await this.usersRepository.findOne({
-    //   where: { email: data.email },
-    // });
-
     if (!user) {
       throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
     }
@@ -108,7 +104,6 @@ export class AuthService {
       user.password,
     );
 
-    // console.log('isPasswordCorrect', isPasswordCorrect);
     if (!isPasswordCorrect) {
       throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
     }
@@ -153,7 +148,6 @@ export class AuthService {
   }
 
   async register(data: AuthRegisterDTO) {
-    // if (data.role) throw new UnauthorizedException(`Role inválida!`);
     const user = await this.userService.create(data);
     return this.createToken(user);
   }
