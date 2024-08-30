@@ -57,7 +57,6 @@ describe('AppController (e2e)', () => {
       .post('/auth/check-token')
       .set('authorization', `Bearer ${accessTokenMock}`)
       .send();
-    console.log(response.body);
     expect(response.statusCode).toEqual(201);
     expect(typeof response.body.id).toEqual('number');
     expect(response.body.role).toEqual(Role.User);

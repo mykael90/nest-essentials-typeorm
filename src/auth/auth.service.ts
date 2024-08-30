@@ -137,16 +137,13 @@ export class AuthService {
 
   async reset(data: AuthResetDTO) {
     const token = this.checkTokenForgetPassword(data.token);
-    console.log('token', token);
     const { id } = token;
-    console.log('id', id);
     try {
       const salt = await bcrypt.genSalt();
       const password = await bcrypt.hash(data.password, salt);
       await this.usersRepository.update(id, {
         password,
       });
-      console.log('password', password);
       const user = await this.userService.show(id);
 
       return this.createToken(user);

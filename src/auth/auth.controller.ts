@@ -86,8 +86,6 @@ export class AuthController {
     const fileName = `photo-${id}-${Date.now()}.jpg`;
     const path = join(getDestinationDirectory(), fileName);
 
-    console.log('path', path);
-
     try {
       await this.fileService.upload(photo, path);
     } catch (e) {

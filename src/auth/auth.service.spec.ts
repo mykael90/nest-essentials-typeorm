@@ -64,13 +64,11 @@ describe('AuthService', () => {
     });
 
     it('should reset password', async () => {
-      console.log('resetTokenMock', resetTokenMock);
       const result = await authService.reset({
         password: '123456',
         token: resetTokenMock,
       });
 
-      console.log('result', result);
       expect(result).toEqual({ accessToken: accessTokenMock });
     });
   });
