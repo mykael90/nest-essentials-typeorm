@@ -7,7 +7,6 @@ import {
   UploadedFile,
   BadRequestException,
   UploadedFiles,
-  Req,
   ParseFilePipe,
   FileTypeValidator,
   MaxFileSizeValidator,
@@ -17,15 +16,16 @@ import { AuthRegisterDTO } from './dto/auth-register.dto';
 import { AuthForgetDTO } from './dto/auth-forget.dto';
 import { AuthResetDTO } from './dto/auth-reset.dto';
 import { AuthService } from './auth.service';
-import { AuthGuard } from 'src/guards/auth.guard';
-import { User } from 'src/decorators/user-decorator';
-import { CreateUserDTO } from 'src/user/dto/create-user.dto';
+import { AuthGuard } from '../guards/auth.guard';
+import { User } from '../decorators/user-decorator';
+import { CreateUserDTO } from '../user/dto/create-user.dto';
 import {
   FileFieldsInterceptor,
   FileInterceptor,
   FilesInterceptor,
 } from '@nestjs/platform-express';
-import { FileService } from 'src/file/file.service';
+import { FileService } from '../file/file.service';
+import { join } from 'path';
 
 @Controller('auth')
 export class AuthController {
@@ -77,7 +77,13 @@ export class AuthController {
     photo: Express.Multer.File,
     @Body('title') title: string,
   ) {
-    const path = `./storage/photos/photo-${id}.jpg`;
+    function getDestinationDirectory() {
+      return join(__dirname, '..', '..', '..', 'storage', 'photos');
+    }
+    const fileName = `photo-${id}-${Date.now()}.jpg`;
+    const path = join(getDestinationDirectory(), fileName);
+
+    console.log('path', path);
 
     try {
       await this.fileService.upload(photo, path);

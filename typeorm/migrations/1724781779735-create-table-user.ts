@@ -15,6 +15,11 @@ export class Migrate1724507303195 implements MigrationInterface {
             unsigned: true,
           },
           {
+            name: 'name',
+            type: 'varchar',
+            length: '60',
+          },
+          {
             name: 'email',
             type: 'varchar',
             length: '60',

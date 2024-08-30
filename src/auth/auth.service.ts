@@ -8,13 +8,12 @@ import { AuthLoginDTO } from './dto/auth-login.dto';
 import { AuthForgetDTO } from './dto/auth-forget.dto';
 import { AuthResetDTO } from './dto/auth-reset.dto';
 import { AuthRegisterDTO } from './dto/auth-register.dto';
-import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { MailerService } from '@nestjs-modules/mailer';
-import { CreateUserDTO } from 'src/user/dto/create-user.dto';
-import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserService } from '../user/user.service';
+import { User } from '../user/entity/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -109,7 +108,7 @@ export class AuthService {
       user.password,
     );
 
-    console.log('isPasswordCorrect', isPasswordCorrect);
+    // console.log('isPasswordCorrect', isPasswordCorrect);
     if (!isPasswordCorrect) {
       throw new UnauthorizedException(`E-mail e/ou senha inválidos!`);
     }
@@ -131,18 +130,23 @@ export class AuthService {
         token,
       },
     });
-    return true;
+    return {
+      success: true,
+    };
   }
 
   async reset(data: AuthResetDTO) {
     const token = this.checkTokenForgetPassword(data.token);
+    console.log('token', token);
     const { id } = token;
+    console.log('id', id);
     try {
       const salt = await bcrypt.genSalt();
       const password = await bcrypt.hash(data.password, salt);
       await this.usersRepository.update(id, {
         password,
       });
+      console.log('password', password);
       const user = await this.userService.show(id);
 
       return this.createToken(user);

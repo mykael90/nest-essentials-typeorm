@@ -4,7 +4,7 @@
             "apiUrl": "http://localhost:3000"
         },
         "development": {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik15a2FlbCIsImVtYWlsIjoiZW5nLm15a2FlbEBnbWFpbC5jb20iLCJpYXQiOjE3MjQ0NDU3NzYsImV4cCI6MTcyNTA1MDU3NiwiYXVkIjoidXNlcnMiLCJpc3MiOiJsb2dpbiIsInN1YiI6IjEifQ.ANZtivriskVWSKTIGjIMpRKjZt2SjcUcxECbpvUNXDk"
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik15a2FlbCIsImVtYWlsIjoiZW5nLm15a2FlbEBnbWFpbC5jb20iLCJpYXQiOjE3MjQ5NDA5OTIsImV4cCI6MTcyNTU0NTc5MiwiYXVkIjoidXNlcnMiLCJpc3MiOiJsb2dpbiIsInN1YiI6IjEifQ.DfGoodUaBoScSOGS1Ua0jjv29bE3k8PbzB4f_h75drU"
       },
         "production": {
           "token": "TODO TOKEN"
@@ -25,7 +25,8 @@
   "cSpell.words": [
     "typeorm"
   ],
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "material-icon-theme.activeIconPack": "nest"
 
 
 }
